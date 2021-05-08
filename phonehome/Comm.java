@@ -39,4 +39,36 @@ public class Comm {
         this.in = new Scanner(socket.getInputStream());
         this.out = new PrintWriter(socket.getOutputStream());
     }
+
+
+    /**
+     * Send provided message through established connection.
+     * 
+     * @param message Message to send.
+     */
+    public void send(String message) {
+        out.println(message);
+        out.flush();
+    }
+
+    /**
+     * Receive message through established connection.
+     * 
+     * @return Message received.
+     */
+    public String read() {
+        return in.nextLine();
+    }
+
+    /**
+     * Close established connection.
+     * 
+     * @throws IOException Thrown from closing the {@link Socket}, {@link Scanner}, 
+     * and {@link PrintWriter}.
+     */
+    public void close() throws IOException {
+        in.close();
+        out.close();
+        socket.close();
+    }
 }
