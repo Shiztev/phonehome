@@ -1,0 +1,14 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/File Camp/usefull/test_necessities/junit-platform-console-standalone-1.7.0-all.jar",
+        "/home/File Camp/usefull/javafx-sdk-11.0.2/lib/javafx.base.jar",
+        "/home/File Camp/usefull/javafx-sdk-11.0.2/lib/javafx.controls.jar",
+        "/home/File Camp/usefull/javafx-sdk-11.0.2/lib/javafx.fxml.jar",
+        "/home/File Camp/usefull/javafx-sdk-11.0.2/lib/javafx.graphics.jar",
+        "/home/File Camp/usefull/javafx-sdk-11.0.2/lib/javafx.media.jar",
+        "/home/File Camp/usefull/javafx-sdk-11.0.2/lib/javafx.swing.jar",
+        "/home/File Camp/usefull/javafx-sdk-11.0.2/lib/javafx.web.jar",
+        "/home/File Camp/usefull/javafx-sdk-11.0.2/lib/javafx-swt.jar"
+    ]
+}
