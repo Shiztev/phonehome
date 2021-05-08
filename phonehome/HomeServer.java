@@ -40,17 +40,25 @@ public class HomeServer {
 
     /**
      * Remove a proxy when connection is lost.
+     * 
+     * @param proxy Dead proxy.
      */
     public void removeProxy(HomeProxy proxy) {
-
+        proxies.remove(proxy);
     }
 
 
     /**
      * Forward a message to all the proxies/clients.
+     * 
+     * @param msg String message to send.
      */
-    public void sendMsg() {
-
+    public void sendMsg(String msg, HomeProxy proxy) {
+        for (HomeProxy p : proxies) {
+            if (!p.equals(proxy)) {
+                p.send(msg);
+            }
+        }
     }
 
     
