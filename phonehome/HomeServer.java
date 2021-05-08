@@ -1,5 +1,7 @@
 package phonehome;
 
+import java.io.IOException;
+import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,17 +23,25 @@ public class HomeServer {
 
 
     /**
-     * Add a new proxy to the set of proxies.
+     * Add a new proxy to the set of proxies. If name is taken, closes the proxy and sends a 
+     * notification to client.
+     * 
+     * @param proxy Fresh proxy for new client connection.
+     * @throws IOException Thrown if proxy already exists (aka user name is taken)
      */
-    public void addProxy() {
-
+    public void addProxy(HomeProxy proxy) throws IOException {
+        boolean t = proxies.add(proxy);
+        if (!t) {
+            proxy.send("\nUsername is taken!");
+            proxy.close();
+        }
     }
 
 
     /**
      * Remove a proxy when connection is lost.
      */
-    public void removeProxy() {
+    public void removeProxy(HomeProxy proxy) {
 
     }
 
