@@ -1,5 +1,6 @@
 package phonehome;
 
+import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -11,7 +12,7 @@ import java.net.Socket;
  * 
  * @author Stevie Alvarez
  */
-public class HomeProxy implements Runnable {
+public class HomeProxy extends Comm implements Runnable {
 
     /**
      * User's Name
@@ -34,8 +35,10 @@ public class HomeProxy implements Runnable {
      * 
      * @param phone Clients socket connection, accepted from {@link HomeServer}.
      * @param home This proxies parent {@link HomeServer}.
+     * @throws IOException Thrown from creating abstract handlers for the phone's I/O streams.
      */
-    public HomeProxy(Socket phone, HomeServer home) {
+    public HomeProxy(Socket phone, HomeServer home) throws IOException {
+        super(phone);
         this.phone = phone;
         this.home = home;
 
