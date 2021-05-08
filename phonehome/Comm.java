@@ -1,5 +1,6 @@
 package phonehome;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
@@ -25,4 +26,17 @@ public class Comm {
      * A handler for receiving data through the desired connection.
      */
     private Scanner in;
+
+    /**
+     * Creates a new {@link Comm} for the provided socket connection.
+     * 
+     * @param socket A socket, establishing the desired connection.
+     * @throws IOException Thrown from creating a {@link Scanner} and {@link PrintWriter} from
+     * the socket's input and output streams, respectivly. 
+     */
+    public Comm(Socket socket) throws IOException {
+        this.socket = socket;
+        this.in = new Scanner(socket.getInputStream());
+        this.out = new PrintWriter(socket.getOutputStream());
+    }
 }
