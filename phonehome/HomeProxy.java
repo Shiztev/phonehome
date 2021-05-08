@@ -8,6 +8,17 @@ package phonehome;
  * 
  * @author Stevie Alvarez
  */
-public class HomeProxy {
-    // Must have a hashcode implementation
+public class HomeProxy implements Runnable {
+
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return super.hashCode();
+    }
 }
