@@ -55,7 +55,6 @@ public class HomeProxy extends Comm implements Runnable {
 
     @Override
     public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
+        return name.hashCode();
     }
 }
