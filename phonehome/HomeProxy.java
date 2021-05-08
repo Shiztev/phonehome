@@ -49,8 +49,32 @@ public class HomeProxy extends Comm implements Runnable {
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
+        String cmd;
+
+        send("Connection Established");
+
+        do {
+            // get next cmd from client
+            cmd = read();
+
+            // check if 
+            if (cmd.strip().toLowerCase().equals("quit") || cmd.strip().toLowerCase().equals("disconnect")) {
+                cmd = "Disconnected";
+            }
+
+            // Send reformatted cmd
+            home.sendMsg(name + "\n" + cmd, this);
+
+        } while (!cmd.equals("Disconnected"));
+
+        send("\nClosing connection....");
+
+        // close connection
+        try {
+            close();
+        } catch (IOException ioe) {}
         
+        send("\nClosed");
     }
 
     @Override
