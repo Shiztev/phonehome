@@ -66,10 +66,19 @@ public class HomeServer {
     public static void main(String[] args) throws IOException {
         // Declare server's socket and HomeServer
         ServerSocket server = new ServerSocket(6403);
+        HomeServer home = new HomeServer();
 
         // while true
+        while (true) {
+            System.out.println("Waiting for connection....");
             // Create a new proxy when connected to (accept and pass socket into proxy)
+            HomeProxy proxy = new HomeProxy(server.accept(), home);
             // Pass proxy into a new thread and start it
+            new Thread(proxy).start();
             // Add proxy to set of proxies
+            home.addProxy(proxy);
+        }
+        
+        // server.close()
     }
 }
