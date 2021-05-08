@@ -7,6 +7,8 @@ import java.net.Socket;
  * and the {@link HomeServer}. A {@link HomeProxy} is created by the {@link HomeServer}
  * for each new connection.
  * 
+ * Note: Might be moved to an inner class in {@link HomeServer}.
+ * 
  * @author Stevie Alvarez
  */
 public class HomeProxy implements Runnable {
