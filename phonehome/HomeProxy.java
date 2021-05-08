@@ -73,6 +73,9 @@ public class HomeProxy extends Comm implements Runnable {
         try {
             close();
         } catch (IOException ioe) {}
+
+        // notify server that proxy is dead
+        home.removeProxy(this);
         
         send("\nClosed");
     }
