@@ -1,6 +1,7 @@
 package phonehome;
 
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
@@ -62,8 +63,9 @@ public class HomeServer {
     }
 
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Declare server's socket and HomeServer
+        ServerSocket server = new ServerSocket(6403);
 
         // while true
             // Create a new proxy when connected to (accept and pass socket into proxy)
