@@ -42,8 +42,8 @@ public class HomeProxy extends Comm implements Runnable {
         this.phone = phone;
         this.home = home;
 
-        // name should be first message sent
-        // this.name = read();
+        // name should be first message sent by client
+        this.name = read();
     }
 
 
