@@ -9,6 +9,7 @@ public interface PhoneLine {
     
     /**
      * Get the user's desired name to be displayed while they're connected.
+     * Should be the first thing the user enters.
      * 
      * @return The user's desired name.
      */
