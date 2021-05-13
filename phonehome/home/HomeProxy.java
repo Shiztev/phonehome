@@ -17,7 +17,7 @@ import phonehome.Comm;
 public class HomeProxy extends Comm {
 
     /**
-     * User's Name
+     * User's Name.
      */
     private String name;
 
