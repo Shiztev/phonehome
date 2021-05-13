@@ -10,7 +10,7 @@ import java.util.Scanner;
  * 
  * @author Stevie Alvarez
  */
-public class Comm {
+public abstract class Comm implements PhoneLine {
 
     /**
      * A socket that establishes the desired connection.
