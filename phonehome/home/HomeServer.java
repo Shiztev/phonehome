@@ -53,7 +53,7 @@ public class HomeServer {
      * 
      * @param msg String message to send.
      */
-    public void sendMsg(String msg, HomeProxy proxy) {
+    public void sendMsg(String msg) {
         for (HomeProxy p : proxies) {
             p.send(msg);
         }
