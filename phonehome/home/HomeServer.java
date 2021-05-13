@@ -6,12 +6,14 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
+import phonehome.Comm;
+
 /**
  * Server side of PhoneHome. Handles all client messaging and forwarding.
  * 
  * @author Stevie Alvarez
  */
-public class HomeServer {
+public class HomeServer extends Comm {
     
     /**
      * A set of proxies, connecting this server to a client.
@@ -80,5 +82,26 @@ public class HomeServer {
         }
         
         // server.close()
+    }
+
+
+    @Override
+    public String getUserName() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public void recieve() {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    public void transmit(String msg) {
+        // TODO Auto-generated method stub
+        
     }
 }
