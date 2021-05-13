@@ -84,4 +84,25 @@ public class HomeProxy extends Comm implements Runnable {
     public int hashCode() {
         return name.hashCode();
     }
+
+
+    @Override
+    public String getUserName() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public void recieve() {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    public void transmit(String msg) {
+        // TODO Auto-generated method stub
+        
+    }
 }

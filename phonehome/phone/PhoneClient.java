@@ -20,4 +20,25 @@ public class PhoneClient extends Comm {
     public static void main(String[] args) {
         
     }
+
+
+    @Override
+    public String getUserName() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    @Override
+    public void recieve() {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    public void transmit(String msg) {
+        // TODO Auto-generated method stub
+        
+    }
 }
