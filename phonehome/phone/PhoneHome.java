@@ -1,4 +1,4 @@
-package phonehome;
+package phonehome.phone;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

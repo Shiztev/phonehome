@@ -1,7 +1,9 @@
-package phonehome;
+package phonehome.home;
 
 import java.io.IOException;
 import java.net.Socket;
+
+import phonehome.Comm;
 
 /**
  * PhoneHome Home proxy handler. Handles communication between a {@link PhoneClient}
@@ -67,7 +69,7 @@ public class HomeProxy extends Comm implements Runnable {
 
         } while (!cmd.equals("Disconnected"));
 
-        send("\nClosing connection....");
+        send("\nClosed");
 
         // close connection
         try {
@@ -76,8 +78,6 @@ public class HomeProxy extends Comm implements Runnable {
 
         // notify server that proxy is dead
         home.removeProxy(this);
-        
-        send("\nClosed");
     }
 
     @Override

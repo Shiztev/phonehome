@@ -1,7 +1,9 @@
-package phonehome;
+package phonehome.phone;
 
 import java.io.IOException;
 import java.net.Socket;
+
+import phonehome.Comm;
 
 /**
  * Client side of HomePhone. Sends and recieves messages from the Home server.
