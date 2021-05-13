@@ -59,7 +59,7 @@ public class HomeProxy extends Comm implements Runnable  {
             }
 
             // Send reformatted cmd
-            home.sendMsg(name + "\n" + cmd, this);
+            home.sendMsg(name + "\n" + cmd);
 
         } while (!cmd.equals("Disconnected"));
 
