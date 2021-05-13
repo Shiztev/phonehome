@@ -12,7 +12,9 @@ public interface PhoneLine {
      * 
      * @return The user's desired name.
      */
-    public abstract String getUserName();
+    public default String getUserName() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("getUserName is unimplemented!");
+    }
 
     /**
      * Recieve and handle input.
