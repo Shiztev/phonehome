@@ -55,9 +55,7 @@ public class HomeServer {
      */
     public void sendMsg(String msg, HomeProxy proxy) {
         for (HomeProxy p : proxies) {
-            if (!p.equals(proxy)) {
-                p.send(msg);
-            }
+            p.send(msg);
         }
     }
 
