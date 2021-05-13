@@ -14,17 +14,12 @@ import phonehome.Comm;
  * 
  * @author Stevie Alvarez
  */
-public class HomeProxy extends Comm implements Runnable {
+public class HomeProxy extends Comm {
 
     /**
      * User's Name
      */
     private String name;
-
-    /**
-     * Client socket connection.
-     */
-    private Socket phone;
 
     /**
      * Parent {@link HomeServer}, which client connected to.
@@ -41,7 +36,6 @@ public class HomeProxy extends Comm implements Runnable {
      */
     public HomeProxy(Socket phone, HomeServer home) throws IOException {
         super(phone);
-        this.phone = phone;
         this.home = home;
 
         // name should be first message sent by client
@@ -83,26 +77,5 @@ public class HomeProxy extends Comm implements Runnable {
     @Override
     public int hashCode() {
         return name.hashCode();
-    }
-
-
-    @Override
-    public String getUserName() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-
-    @Override
-    public void recieve() {
-        // TODO Auto-generated method stub
-        
-    }
-
-
-    @Override
-    public void transmit(String msg) {
-        // TODO Auto-generated method stub
-        
     }
 }
