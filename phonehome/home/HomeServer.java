@@ -54,6 +54,8 @@ public class HomeServer {
      * @param msg String message to send.
      */
     public void sendMsg(String msg) {
+        System.out.println(msg);
+
         for (HomeProxy p : proxies) {
             p.send(msg);
         }
