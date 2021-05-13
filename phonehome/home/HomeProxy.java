@@ -14,7 +14,7 @@ import phonehome.Comm;
  * 
  * @author Stevie Alvarez
  */
-public class HomeProxy extends Comm {
+public class HomeProxy extends Comm implements Runnable  {
 
     /**
      * User's Name.
