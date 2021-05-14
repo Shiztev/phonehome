@@ -3,6 +3,7 @@ package phonehome.phone;
 import java.net.Socket;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.geometry.Insets;
@@ -82,8 +83,9 @@ public class PhoneHome extends Application {
 
         // scrollpane to allow scrolling
         ScrollPane scroll = new ScrollPane(display);
-        scroll.setPadding(new Insets(0, 0, 0, 0));
+        scroll.setPadding(new Insets(0, 0, 0, 0));  // removes border?
 
+        Label vposLabel = new Label();
         /**
          * A {@link Service} which receives messages from the server and
          * updates the current application's stage for the user to see.
@@ -96,21 +98,26 @@ public class PhoneHome extends Application {
 
                     @Override
                     protected String call() throws Exception {
-                        double bottom;
+                        double bottom = 1.0;
                         String readMsg = "";
+
+                        // initial message and positioning
                         String msg = ">> Enter username:";
                         updateMessage(msg);
 
                         while (!isCancelled()) {
-                            bottom = scroll.getVmax();
+                            // auto scroll to the bottom if user was at bottom
+                            if (bottom == 1.0) {
+                                Platform.runLater(() -> {
+                                scroll.layout();
+                                scroll.setVvalue(1.0d);
+                                });
+                            }
+
                             readMsg = phone.read();
+                            bottom = scroll.getVvalue();
                             msg += readMsg + "\n";
                             updateMessage(msg);
-                            
-                            // if user was previouslt at the bottom, scroll to bottom
-                            if (scroll.getVvalue() == bottom) {
-                                scroll.setVvalue(scroll.getVmax());
-                            }
                         }
 
                         return msg;
@@ -146,6 +153,7 @@ public class PhoneHome extends Application {
             phone.send(input.getText());
             input.setText("");
             input.setPromptText("Hey, how're you doing?");  // change to randomly set prompt text from a list of options
+            vposLabel.setText("" + scroll.getVvalue());
         });
 
 
@@ -153,7 +161,7 @@ public class PhoneHome extends Application {
          * Setup and show stage
          */
         
-        line.getChildren().addAll(inputPrompter, input);
+        line.getChildren().addAll(inputPrompter, input, vposLabel);
 
         // contains label to display messages and textbox for user input
         GridPane phoneline = new GridPane();
