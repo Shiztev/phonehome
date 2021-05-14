@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -14,9 +15,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import phonehome.Comm;
@@ -135,15 +139,18 @@ public class PhoneHome extends Application {
          */
         HBox line = new HBox();
         line.setPadding(new Insets(15, 0, 0, 0));
-
-        //line.setBorder(new Border(new BorderStroke(arg0, arg1, arg2, arg3)));
+        //line.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(0), BorderStroke.THIN)));
+        
+        // prompt indicator for user input
         Label inputPrompter = new Label(">>");
         inputPrompter.setFont(PROMPT_FONT);
         inputPrompter.setPadding(new Insets(0, 15, 0, 0));
+        inputPrompter.prefHeightProperty().bind(line.heightProperty());
 
         // textbox for user input, NEEDS ADAPTABLE HEIGHT FOR USER INPUT
         TextField input = new TextField();
         input.setFont(MSG_FONT);
+        input.setStyle("-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-faint-focus-color: transparent;");
         input.setPromptText("Carlson239");  // change to set a random username as prompt text
         input.setMaxWidth(Double.MAX_VALUE);
 
@@ -172,6 +179,7 @@ public class PhoneHome extends Application {
 
         scroll.prefHeightProperty().bind(phoneline.heightProperty());
         scroll.prefWidthProperty().bind(phoneline.widthProperty());
+        input.prefWidthProperty().bind(phoneline.widthProperty());
 
         stage.setTitle("PhoneHome");
         stage.setScene(new Scene(phoneline));
