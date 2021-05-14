@@ -43,7 +43,7 @@ public class PhoneHome extends Application {
 
          // contains label to display messages and textbox for user input
         VBox phoneline = new VBox();
-        phoneline.setPrefSize(600, 400);
+        phoneline.setPrefSize(400, 600);
 
 
         /**
@@ -54,7 +54,7 @@ public class PhoneHome extends Application {
          * A {@link Service} which receives messages from the server and
          * updates the current application's stage for the user to see.
          */
-        final Service receive = new Service<String>(){
+        final Service<String> receive = new Service<>(){
 
             @Override
             protected Task<String> createTask() {
@@ -62,11 +62,13 @@ public class PhoneHome extends Application {
 
                     @Override
                     protected String call() throws Exception {
+                        String readMsg = "";
                         String msg = ">> Enter username:";
                         updateMessage(msg);
 
                         while (!isCancelled()) {
-                            msg += phone.read() + "\n";
+                            readMsg = phone.read();
+                            msg += readMsg + "\n";
                             updateMessage(msg);
                         }
 
@@ -113,7 +115,7 @@ public class PhoneHome extends Application {
         phoneline.getChildren().addAll(display, line);
 
         stage.setTitle("PhoneHome");
-        stage.setScene(new Scene(phoneline));
+    stage.setScene(new Scene(phoneline));
         stage.show();
     }
     
