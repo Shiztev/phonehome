@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
@@ -21,6 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import phonehome.Comm;
@@ -32,6 +35,10 @@ import phonehome.Comm;
  * @author Stevie Alvarez
  */
 public class PhoneHome extends Application {
+
+    /**
+     * dark gray: 1d1d1d, light gray: 2b2b2b
+     */
 
     /**
      * Font for messages.
@@ -83,10 +90,13 @@ public class PhoneHome extends Application {
 
         // label to display messages
         Label display = new Label();
+        display.setBackground(new Background(new BackgroundFill(Paint.valueOf("1d1d1d"), new CornerRadii(0), new Insets(0))));
         display.setFont(MSG_FONT);
+        display.setTextFill(Color.WHITE);
 
         // scrollpane to allow scrolling
         ScrollPane scroll = new ScrollPane(display);
+        scroll.setBackground(new Background(new BackgroundFill(Paint.valueOf("1d1d1d"), new CornerRadii(0), new Insets(0))));
         scroll.setPadding(new Insets(0, 0, 0, 0));  // removes border?
 
         /**
@@ -138,17 +148,21 @@ public class PhoneHome extends Application {
          * User input
          */
         HBox line = new HBox();
+        line.setBackground(new Background(new BackgroundFill(Paint.valueOf("1d1d1d"), new CornerRadii(0), new Insets(0))));
         line.setPadding(new Insets(15, 0, 0, 0));
         //line.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(0), BorderStroke.THIN)));
         
         // prompt indicator for user input
         Label inputPrompter = new Label(">>");
+        inputPrompter.setBackground(new Background(new BackgroundFill(Paint.valueOf("1d1d1d"), new CornerRadii(0), new Insets(0))));
+        inputPrompter.setTextFill(Color.WHITE);
         inputPrompter.setFont(PROMPT_FONT);
         inputPrompter.setPadding(new Insets(0, 15, 0, 0));
         inputPrompter.prefHeightProperty().bind(line.heightProperty());
 
         // textbox for user input, NEEDS ADAPTABLE HEIGHT FOR USER INPUT
         TextField input = new TextField();
+        
         input.setFont(MSG_FONT);
         input.setStyle("-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-faint-focus-color: transparent;");
         input.setPromptText("Carlson239");  // change to set a random username as prompt text
@@ -170,6 +184,7 @@ public class PhoneHome extends Application {
 
         // contains label to display messages and textbox for user input
         GridPane phoneline = new GridPane();
+        phoneline.setBackground(new Background(new BackgroundFill(Paint.valueOf("1d1d1d"), new CornerRadii(0), new Insets(0))));
         phoneline.setPadding(new Insets(15));
         phoneline.setPrefSize(500, 750);
         phoneline.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
