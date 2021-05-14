@@ -12,6 +12,7 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import phonehome.Comm;
 
@@ -22,6 +23,11 @@ import phonehome.Comm;
  * @author Stevie Alvarez
  */
 public class PhoneHome extends Application {
+    private static final Font FONT;
+
+    static {
+        FONT = new Font("IBM Plex Mono Bold Italic", 15);
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -80,6 +86,7 @@ public class PhoneHome extends Application {
 
         // label to display messages
         Label display = new Label();
+        display.setFont(FONT);
         display.textProperty().bind(receive.messageProperty());
         //display.setBorder(new Border(new BorderStroke(arg0, arg1, arg2, arg3)));
 
@@ -92,9 +99,11 @@ public class PhoneHome extends Application {
         HBox line = new HBox();
         //line.setBorder(new Border(new BorderStroke(arg0, arg1, arg2, arg3)));
         Label inputPrompter = new Label(">>");
+        inputPrompter.setFont(FONT);
 
         // textbox for user input, NEEDS ADAPTABLE HEIGHT FOR USER INPUT
         TextField input = new TextField();
+        input.setFont(FONT);
         input.setPromptText("Carlson239");  // change to set a random username as prompt text
         input.setMaxWidth(Double.MAX_VALUE);
 
@@ -115,7 +124,7 @@ public class PhoneHome extends Application {
         phoneline.getChildren().addAll(display, line);
 
         stage.setTitle("PhoneHome");
-    stage.setScene(new Scene(phoneline));
+        stage.setScene(new Scene(phoneline));
         stage.show();
     }
     
