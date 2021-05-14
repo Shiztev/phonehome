@@ -85,7 +85,6 @@ public class PhoneHome extends Application {
         ScrollPane scroll = new ScrollPane(display);
         scroll.setPadding(new Insets(0, 0, 0, 0));  // removes border?
 
-        Label vposLabel = new Label();
         /**
          * A {@link Service} which receives messages from the server and
          * updates the current application's stage for the user to see.
@@ -153,7 +152,6 @@ public class PhoneHome extends Application {
             phone.send(input.getText());
             input.setText("");
             input.setPromptText("Hey, how're you doing?");  // change to randomly set prompt text from a list of options
-            vposLabel.setText("" + scroll.getVvalue());
         });
 
 
@@ -161,7 +159,7 @@ public class PhoneHome extends Application {
          * Setup and show stage
          */
         
-        line.getChildren().addAll(inputPrompter, input, vposLabel);
+        line.getChildren().addAll(inputPrompter, input);
 
         // contains label to display messages and textbox for user input
         GridPane phoneline = new GridPane();
