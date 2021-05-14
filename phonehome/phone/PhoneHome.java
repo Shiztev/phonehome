@@ -8,10 +8,12 @@ import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -69,11 +71,6 @@ public class PhoneHome extends Application {
         // model
         Comm phone = new Comm(new Socket("localhost", 6403));
 
-         // contains label to display messages and textbox for user input
-        BorderPane phoneline = new BorderPane();
-        phoneline.setPrefSize(400, 600);
-        phoneline.setPadding(new Insets(10));
-
 
         /**
          * Main display components
@@ -113,6 +110,13 @@ public class PhoneHome extends Application {
         display.textProperty().bind(receive.messageProperty());
         //display.setBorder(new Border(new BorderStroke(arg0, arg1, arg2, arg3)));
 
+        // scrollpane to allow scrolling
+        ScrollPane scroll = new ScrollPane(display);
+        //scroll.setFitToHeight(true);
+        scroll.setPadding(new Insets(0, 0, 0, 0));
+        scroll.setPrefSize(500, 750);
+        scroll.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+
         receive.start();
 
         /**
@@ -120,6 +124,7 @@ public class PhoneHome extends Application {
          */
         // NEEDS ADAPTABLE HEIGHT FOR TEXT BOX
         HBox line = new HBox();
+        line.setPadding(new Insets(10, 0, 0, 0));
 
         //line.setBorder(new Border(new BorderStroke(arg0, arg1, arg2, arg3)));
         Label inputPrompter = new Label(">>");
@@ -146,8 +151,13 @@ public class PhoneHome extends Application {
         
         line.getChildren().addAll(inputPrompter, input);
 
-        phoneline.setTop(display);
-        phoneline.setBottom(line);
+        // contains label to display messages and textbox for user input
+        GridPane phoneline = new GridPane();
+        phoneline.setPadding(new Insets(10));
+        phoneline.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+
+        phoneline.add(scroll, 0, 0);
+        phoneline.add(line, 0, 1);
 
         stage.setTitle("PhoneHome");
         stage.setScene(new Scene(phoneline));
