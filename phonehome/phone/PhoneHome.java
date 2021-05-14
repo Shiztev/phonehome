@@ -5,10 +5,12 @@ import java.net.Socket;
 import javafx.application.Application;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -68,8 +70,9 @@ public class PhoneHome extends Application {
         Comm phone = new Comm(new Socket("localhost", 6403));
 
          // contains label to display messages and textbox for user input
-        VBox phoneline = new VBox();
+        BorderPane phoneline = new BorderPane();
         phoneline.setPrefSize(400, 600);
+        phoneline.setPadding(new Insets(10));
 
 
         /**
@@ -117,9 +120,11 @@ public class PhoneHome extends Application {
          */
         // NEEDS ADAPTABLE HEIGHT FOR TEXT BOX
         HBox line = new HBox();
+
         //line.setBorder(new Border(new BorderStroke(arg0, arg1, arg2, arg3)));
         Label inputPrompter = new Label(">>");
         inputPrompter.setFont(PROMPT_FONT);
+        inputPrompter.setPadding(new Insets(0, 10, 0, 0));
 
         // textbox for user input, NEEDS ADAPTABLE HEIGHT FOR USER INPUT
         TextField input = new TextField();
@@ -141,7 +146,8 @@ public class PhoneHome extends Application {
         
         line.getChildren().addAll(inputPrompter, input);
 
-        phoneline.getChildren().addAll(display, line);
+        phoneline.setTop(display);
+        phoneline.setBottom(line);
 
         stage.setTitle("PhoneHome");
         stage.setScene(new Scene(phoneline));
