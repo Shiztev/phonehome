@@ -47,7 +47,7 @@ public class HomeProxy extends Comm implements Runnable  {
     public void run() {
         String cmd;
 
-        send(" " + name + "\nConnection Established");
+        send(" " + name + "\n>> Connection Established");
 
         do {
             // get next cmd from client
@@ -55,15 +55,17 @@ public class HomeProxy extends Comm implements Runnable  {
 
             // check if 
             if (cmd.strip().toLowerCase().equals("quit") || cmd.strip().toLowerCase().equals("disconnect")) {
-                cmd = "Disconnected";
+                cmd = ">> " + name + " disconnected";
+            } else {
+                cmd = name + ":: " + cmd;
             }
 
             // Send reformatted cmd
-            home.sendMsg(name + ":: " + cmd);
+            home.sendMsg(cmd);
 
-        } while (!cmd.equals("Disconnected"));
+        } while (!(cmd.startsWith(">> ") && cmd.endsWith(" disconnected")));
 
-        send("\nClosed");
+        send("\n>> Connection Closed");
 
         // close connection
         try {
