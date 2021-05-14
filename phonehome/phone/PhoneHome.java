@@ -23,10 +23,30 @@ import phonehome.Comm;
  * @author Stevie Alvarez
  */
 public class PhoneHome extends Application {
-    private static final Font FONT;
+
+    /**
+     * Font for messages.
+     */
+    private static final Font MSG_FONT;
+
+    /**
+     * Font for user text prompt.
+     */
+    private static final Font PROMPT_FONT;
+
+    /**
+     * Font for server notifications.
+     */
+    private static final Font SERVER_FONT;
 
     static {
-        FONT = new Font("IBM Plex Mono Bold Italic", 15);
+        // "IBM Plex Mono" for messages
+        MSG_FONT = new Font("IBM Plex Mono", 15);
+        // "IBM Plex Mono Bold" for the >> prompts/notifications
+        PROMPT_FONT = new Font("IBM Plex Mono Bold", 15);
+        // "IBM Plex Mono Bold Italic" for server notifications
+        SERVER_FONT = new Font("IBM Plex Mono Bold Italic", 15);
+        
     }
 
     @Override
@@ -86,7 +106,7 @@ public class PhoneHome extends Application {
 
         // label to display messages
         Label display = new Label();
-        display.setFont(FONT);
+        display.setFont(MSG_FONT);
         display.textProperty().bind(receive.messageProperty());
         //display.setBorder(new Border(new BorderStroke(arg0, arg1, arg2, arg3)));
 
@@ -99,11 +119,11 @@ public class PhoneHome extends Application {
         HBox line = new HBox();
         //line.setBorder(new Border(new BorderStroke(arg0, arg1, arg2, arg3)));
         Label inputPrompter = new Label(">>");
-        inputPrompter.setFont(FONT);
+        inputPrompter.setFont(PROMPT_FONT);
 
         // textbox for user input, NEEDS ADAPTABLE HEIGHT FOR USER INPUT
         TextField input = new TextField();
-        input.setFont(FONT);
+        input.setFont(MSG_FONT);
         input.setPromptText("Carlson239");  // change to set a random username as prompt text
         input.setMaxWidth(Double.MAX_VALUE);
 
