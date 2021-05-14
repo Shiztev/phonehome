@@ -76,6 +76,14 @@ public class PhoneHome extends Application {
          * Main display components
          */
 
+        // label to display messages
+        Label display = new Label();
+        display.setFont(MSG_FONT);
+
+        // scrollpane to allow scrolling
+        ScrollPane scroll = new ScrollPane(display);
+        scroll.setPadding(new Insets(0, 0, 0, 0));
+
         /**
          * A {@link Service} which receives messages from the server and
          * updates the current application's stage for the user to see.
@@ -88,14 +96,21 @@ public class PhoneHome extends Application {
 
                     @Override
                     protected String call() throws Exception {
+                        double bottom;
                         String readMsg = "";
                         String msg = ">> Enter username:";
                         updateMessage(msg);
 
                         while (!isCancelled()) {
+                            bottom = scroll.getVmax();
                             readMsg = phone.read();
                             msg += readMsg + "\n";
                             updateMessage(msg);
+                            
+                            // if user was previouslt at the bottom, scroll to bottom
+                            if (scroll.getVvalue() == bottom) {
+                                scroll.setVvalue(scroll.getVmax());
+                            }
                         }
 
                         return msg;
@@ -104,32 +119,21 @@ public class PhoneHome extends Application {
             }
         };
 
-        // label to display messages
-        Label display = new Label();
-        display.setFont(MSG_FONT);
+        // set display text to updated message property
         display.textProperty().bind(receive.messageProperty());
-        //display.setBorder(new Border(new BorderStroke(arg0, arg1, arg2, arg3)));
-
-        // scrollpane to allow scrolling
-        ScrollPane scroll = new ScrollPane(display);
-        //scroll.setFitToHeight(true);
-        scroll.setPadding(new Insets(0, 0, 0, 0));
-        scroll.setPrefSize(500, 750);
-        scroll.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
         receive.start();
 
         /**
          * User input
          */
-        // NEEDS ADAPTABLE HEIGHT FOR TEXT BOX
         HBox line = new HBox();
-        line.setPadding(new Insets(10, 0, 0, 0));
+        line.setPadding(new Insets(15, 0, 0, 0));
 
         //line.setBorder(new Border(new BorderStroke(arg0, arg1, arg2, arg3)));
         Label inputPrompter = new Label(">>");
         inputPrompter.setFont(PROMPT_FONT);
-        inputPrompter.setPadding(new Insets(0, 10, 0, 0));
+        inputPrompter.setPadding(new Insets(0, 15, 0, 0));
 
         // textbox for user input, NEEDS ADAPTABLE HEIGHT FOR USER INPUT
         TextField input = new TextField();
@@ -153,11 +157,15 @@ public class PhoneHome extends Application {
 
         // contains label to display messages and textbox for user input
         GridPane phoneline = new GridPane();
-        phoneline.setPadding(new Insets(10));
+        phoneline.setPadding(new Insets(15));
+        phoneline.setPrefSize(500, 750);
         phoneline.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
         phoneline.add(scroll, 0, 0);
         phoneline.add(line, 0, 1);
+
+        scroll.prefHeightProperty().bind(phoneline.heightProperty());
+        scroll.prefWidthProperty().bind(phoneline.widthProperty());
 
         stage.setTitle("PhoneHome");
         stage.setScene(new Scene(phoneline));
