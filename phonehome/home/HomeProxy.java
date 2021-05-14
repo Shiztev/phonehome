@@ -47,7 +47,7 @@ public class HomeProxy extends Comm implements Runnable  {
     public void run() {
         String cmd;
 
-        send("Connection Established");
+        send(" " + name + "\nConnection Established");
 
         do {
             // get next cmd from client
@@ -59,7 +59,7 @@ public class HomeProxy extends Comm implements Runnable  {
             }
 
             // Send reformatted cmd
-            home.sendMsg(name + "\n\t" + cmd);
+            home.sendMsg(name + ":: " + cmd);
 
         } while (!cmd.equals("Disconnected"));
 
