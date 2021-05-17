@@ -7,21 +7,15 @@ import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -93,10 +87,13 @@ public class PhoneHome extends Application {
         display.setBackground(new Background(new BackgroundFill(Paint.valueOf("1d1d1d"), new CornerRadii(0), new Insets(0))));
         display.setFont(MSG_FONT);
         display.setTextFill(Color.WHITE);
+        display.setPadding(new Insets(10, 10, 10, 10));
 
-        // scrollpane to allow scrolling (note: background color specified directly before staging)
+        // scrollpane to allow scrolling
         ScrollPane scroll = new ScrollPane(display);
-        scroll.setPadding(new Insets(0, 0, 0, 0));  // removes border?
+        // set scrollpane background color. It has no structure until the stage is displayed.
+        stage.setOnShown(e -> scroll.lookup(".viewport").setStyle("-fx-background-color: #1d1d1d;"));
+        scroll.setStyle("-fx-border-color: white; -fx-border-width: 1 1 1 1;");
 
         /**
          * A {@link Service} which receives messages from the server and
@@ -163,7 +160,7 @@ public class PhoneHome extends Application {
         TextField input = new TextField();
         
         input.setFont(MSG_FONT);
-        input.setStyle("-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-faint-focus-color: transparent; -fx-fill: white; -fx-background-color: #1d1d1d;");
+        input.setStyle("-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-border-color: white; -fx-border-width: 0 0 1 0; -fx-faint-focus-color: transparent; -fx-background-color: #1d1d1d; -fx-text-fill: white;");
         input.setPromptText("Carlson239");  // change to set a random username as prompt text
         input.setMaxWidth(Double.MAX_VALUE);
 
@@ -194,9 +191,6 @@ public class PhoneHome extends Application {
         scroll.prefHeightProperty().bind(phoneline.heightProperty());
         scroll.prefWidthProperty().bind(phoneline.widthProperty());
         input.prefWidthProperty().bind(phoneline.widthProperty());
-
-        // set scrollpane background color. It has no structure until the stage is displayed.
-        stage.setOnShown(e -> scroll.lookup(".viewport").setStyle("-fx-background-color: #1d1d1d;"));
 
         // safely close connection when GUI closed
         stage.setOnCloseRequest(e -> phone.send("quit"));
