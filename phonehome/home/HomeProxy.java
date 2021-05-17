@@ -41,12 +41,32 @@ public class HomeProxy extends Comm implements Runnable  {
     }
 
 
+    /**
+     * Disconnect from server.
+     */
+    private void disconnect() {
+        try {
+            home.removeProxy(this);
+        } catch (IOException e) {}
+        send("\n>> Connection Closed");
+    }
+
+
     @Override
     public void run() {
         String cmd;
 
-        // name should be first message sent by client
-        this.name = read();
+        // get Username
+        try {
+            // name should be first message sent by client
+            boolean t = false;
+            while (!t) {
+                this.name = read();
+                t = home.addProxy(this);
+            }
+        } catch (IOException ioe) {
+            return;
+        }
 
         send(" " + name + "\n>> Connection Established");
 
@@ -85,5 +105,16 @@ public class HomeProxy extends Comm implements Runnable  {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof HomeProxy) {
+            HomeProxy p = (HomeProxy)obj;
+            return name.equals(p.name);
+
+        } else {
+            return false;
+        }
     }
 }
