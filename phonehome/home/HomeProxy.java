@@ -71,6 +71,8 @@ public class HomeProxy extends Comm implements Runnable  {
                     disconnect();
                     return;
                 }
+
+                this.name = cmd;
                 t = home.addProxy(this);
             }
         } catch (IOException ioe) {
