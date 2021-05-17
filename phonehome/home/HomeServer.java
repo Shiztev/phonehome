@@ -27,14 +27,16 @@ public class HomeServer {
      * notification to client.
      * 
      * @param proxy Fresh proxy for new client connection.
+     * @return Value determining if proxy name is valid.
      * @throws IOException Thrown if proxy already exists (aka user name is taken)
      */
-    public void addProxy(HomeProxy proxy) throws IOException {
+    public boolean addProxy(HomeProxy proxy) throws IOException {
         boolean t = proxies.add(proxy);
         if (!t) {
-            proxy.send("\nUsername is taken!");
-            proxy.close();
+            proxy.send(">> Username is taken! Enter a different Username:");
         }
+
+        return t;
     }
 
 
@@ -54,8 +56,6 @@ public class HomeServer {
      * @param msg String message to send.
      */
     public void sendMsg(String msg) {
-        System.out.println(msg);
-
         for (HomeProxy p : proxies) {
             p.send(msg);
         }
@@ -74,8 +74,6 @@ public class HomeServer {
             HomeProxy proxy = new HomeProxy(server.accept(), home);
             // Pass proxy into a new thread and start it
             new Thread(proxy).start();
-            // Add proxy to set of proxies
-            home.addProxy(proxy);
         }
         
         // server.close()
