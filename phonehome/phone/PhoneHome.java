@@ -94,6 +94,12 @@ public class PhoneHome extends Application {
         // set scrollpane background color. It has no structure until the stage is displayed.
         stage.setOnShown(e -> scroll.lookup(".viewport").setStyle("-fx-background-color: #1d1d1d;"));
         scroll.setStyle("-fx-border-color: white; -fx-border-width: 1 1 1 1;");
+        
+        /* BORKED, fix labels width to scrollpanes width where text forced onto next line.
+        scroll.setFitToWidth(true);
+        // make display's width fit scroll
+        display.prefWidthProperty().bind(scroll.widthProperty());
+        */
 
         /**
          * A {@link Service} which receives messages from the server and
@@ -184,6 +190,7 @@ public class PhoneHome extends Application {
         phoneline.setPadding(new Insets(15));
         phoneline.setPrefSize(500, 750);
         phoneline.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        phoneline.setMinSize(300, 300);
 
         phoneline.add(scroll, 0, 0);
         phoneline.add(line, 0, 1);
