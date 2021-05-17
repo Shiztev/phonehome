@@ -199,6 +199,9 @@ public class PhoneHome extends Application {
         // set scrollpane background color. It has no structure until the stage is displayed.
         stage.setOnShown(e -> scroll.lookup(".viewport").setStyle("-fx-background-color: #1d1d1d;"));
 
+        // safely close connection when GUI closed
+        stage.setOnCloseRequest(e -> phone.send("quit"));
+
         stage.setTitle("PhoneHome");
         stage.setScene(new Scene(phoneline));
         stage.show();
