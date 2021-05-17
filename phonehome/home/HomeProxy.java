@@ -66,19 +66,24 @@ public class HomeProxy extends Comm implements Runnable  {
 
         } while (!(cmd.startsWith(">> ") && cmd.endsWith(" disconnected")));
 
+        // notify server that proxy is dead
+        home.removeProxy(this);
+
         send("\n>> Connection Closed");
 
         // close connection
         try {
             close();
         } catch (IOException ioe) {}
-
-        // notify server that proxy is dead
-        home.removeProxy(this);
     }
 
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }
