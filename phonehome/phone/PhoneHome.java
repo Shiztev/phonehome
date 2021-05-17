@@ -114,7 +114,7 @@ public class PhoneHome extends Application {
                         String readMsg = "";
 
                         // initial message and positioning
-                        String msg = "\n>> Enter username:";
+                        String msg = ">> Enter username:";
                         updateMessage(msg);
 
                         while (!isCancelled()) {
