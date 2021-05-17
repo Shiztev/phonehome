@@ -114,7 +114,7 @@ public class PhoneHome extends Application {
                         String readMsg = "";
 
                         // initial message and positioning
-                        String msg = ">> Enter username:";
+                        String msg = "\n>> Enter username:";
                         updateMessage(msg);
 
                         while (!isCancelled()) {
@@ -128,7 +128,7 @@ public class PhoneHome extends Application {
 
                             readMsg = phone.read();
                             bottom = scroll.getVvalue();
-                            msg += readMsg + "\n";
+                            msg += "\n" + readMsg;
                             updateMessage(msg);
                         }
 
