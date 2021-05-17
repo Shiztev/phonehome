@@ -37,15 +37,16 @@ public class HomeProxy extends Comm implements Runnable  {
     public HomeProxy(Socket phone, HomeServer home) throws IOException {
         super(phone);
         this.home = home;
-
-        // name should be first message sent by client
-        this.name = read();
+        this.name = "";  // will be assigned in body of run()
     }
 
 
     @Override
     public void run() {
         String cmd;
+
+        // name should be first message sent by client
+        this.name = read();
 
         send(" " + name + "\n>> Connection Established");
 
