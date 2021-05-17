@@ -163,7 +163,7 @@ public class PhoneHome extends Application {
         TextField input = new TextField();
         
         input.setFont(MSG_FONT);
-        input.setStyle("-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-faint-focus-color: transparent; -fx-fill: white;");
+        input.setStyle("-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-faint-focus-color: transparent; -fx-fill: white; -fx-background-color: #1d1d1d;");
         input.setBackground(new Background(new BackgroundFill(Paint.valueOf("1d1d1d"), new CornerRadii(0), new Insets(0))));
         input.setPromptText("Carlson239");  // change to set a random username as prompt text
         input.setMaxWidth(Double.MAX_VALUE);
