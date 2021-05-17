@@ -40,15 +40,19 @@ public class HomeProxy extends Comm implements Runnable  {
         this.name = "";  // will be assigned in body of run()
     }
 
-
     /**
-     * Disconnect from server.
+     * Disconnect from the server.
      */
     private void disconnect() {
-        try {
-            home.removeProxy(this);
-        } catch (IOException e) {}
+        // notify server that proxy is dead
+        home.removeProxy(this);
+
         send("\n>> Connection Closed");
+
+        // close connection
+        try {
+            close();
+        } catch (IOException ioe) {}
     }
 
 
@@ -61,15 +65,22 @@ public class HomeProxy extends Comm implements Runnable  {
             // name should be first message sent by client
             boolean t = false;
             while (!t) {
-                this.name = read();
+                cmd = read();
+                // ensure user hasn't closed GUI
+                if (cmd.equals("quit")) {
+                    disconnect();
+                    return;
+                }
                 t = home.addProxy(this);
             }
         } catch (IOException ioe) {
             return;
         }
 
+        // send connection message
         send(" " + name + "\n>> Connection Established");
 
+        // main body of user interaction
         do {
             // get next cmd from client
             cmd = read();
@@ -86,15 +97,8 @@ public class HomeProxy extends Comm implements Runnable  {
 
         } while (!(cmd.startsWith(">> ") && cmd.endsWith(" disconnected")));
 
-        // notify server that proxy is dead
-        home.removeProxy(this);
-
-        send("\n>> Connection Closed");
-
-        // close connection
-        try {
-            close();
-        } catch (IOException ioe) {}
+        // disconnect
+        disconnect();
     }
 
     @Override
