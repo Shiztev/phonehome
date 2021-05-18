@@ -1,0 +1,9 @@
+Textbox width issue: 
+    Option 1: Resizable Textboxes
+        Find an alternative container to Javafx.Label which can force text onto 
+        a new line based on current container size.
+
+    Option 2: Fixed GUI Width
+        Have sending client send message size before actual message, so that recieving 
+        clients can handle message formatting OR sending client formats message before
+        sending the message to server. 
