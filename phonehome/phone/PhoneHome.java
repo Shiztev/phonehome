@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -94,7 +95,9 @@ public class PhoneHome extends Application {
         // set scrollpane background color. It has no structure until the stage is displayed.
         stage.setOnShown(e -> scroll.lookup(".viewport").setStyle("-fx-background-color: #1d1d1d;"));
         scroll.setStyle("-fx-border-color: white; -fx-border-width: 1 1 1 1;");
-        
+        scroll.setHbarPolicy(ScrollBarPolicy.NEVER);
+        scroll.setVbarPolicy(ScrollBarPolicy.NEVER);
+
         /* BORKED, fix labels width to scrollpanes width where text forced onto next line.
         scroll.setFitToWidth(true);
         // make display's width fit scroll
