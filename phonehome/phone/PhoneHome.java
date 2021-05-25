@@ -94,9 +94,12 @@ public class PhoneHome extends Application {
         ScrollPane scroll = new ScrollPane(display);
         // set scrollpane background color. It has no structure until the stage is displayed.
         stage.setOnShown(e -> scroll.lookup(".viewport").setStyle("-fx-background-color: #1d1d1d;"));
-        scroll.setStyle("-fx-border-color: white; -fx-border-width: 1 1 1 1;");
-        scroll.setHbarPolicy(ScrollBarPolicy.NEVER);
-        scroll.setVbarPolicy(ScrollBarPolicy.NEVER);
+        //scroll.setStyle("-fx-border-color: white; -fx-border-width: 1 1 1 1; ");
+        scroll.getStyleClass().add("scroll-pane");
+        scroll.getChildrenUnmodifiable().stream().forEach((e) -> {e.getStyleClass().add("scroll-bar");});
+
+        //scroll.setHbarPolicy(ScrollBarPolicy.NEVER);
+        //scroll.setVbarPolicy(ScrollBarPolicy.NEVER);
 
         /* BORKED, fix labels width to scrollpanes width where text forced onto next line.
         scroll.setFitToWidth(true);
@@ -206,7 +209,12 @@ public class PhoneHome extends Application {
         stage.setOnCloseRequest(e -> phone.send("quit"));
 
         stage.setTitle("PhoneHome");
-        stage.setScene(new Scene(phoneline));
+        Scene scene = new Scene(phoneline);
+
+        // set scene css
+        scene.getStylesheets().add("phonehome/phone/assets/phonestyle.css");
+
+        stage.setScene(scene);
         stage.show();
     }
     
