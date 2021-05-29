@@ -26,6 +26,8 @@
     -fx-background-color: #1d1d1d;
 }
 
+
+/* Scrollbar hovering styling */
 .scroll-bar .thumb:hover {
     /* Standard styling */
     color: #2b2b2b;
@@ -34,6 +36,7 @@
     -fx-color: #2b2b2b;
 }
 
+
 /* Scrollbar clicked/pressed styling */
 .scroll-bar .thumb:pressed {
     /* Standard styling */
@@ -41,4 +44,26 @@
 
     /* Javafx styling */
     -fx-color:whitesmoke;
+}
+
+
+/* Remove increment/decrement scroll bar buttons */
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    /* Standard styling */
+    background-color: transparent;
+    /*background-radius: transparent;*/
+    padding: 0 10 0 0;
+    
+    /* Javafx styling */
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 0 10 0 0;
+}
+
+/* Continued: Remove increment/decrement scroll bar buttons */
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    padding: 0;
+
+    -fx-shape: " ";
+    -fx-padding: 0;
 }
