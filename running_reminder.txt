@@ -1,0 +1,4 @@
+javac --module-path lib/ --add-modules javafx.controls client/PhoneHome.java
+
+java --module-path lib/ --add-modules javafx.controls client/PhoneHome.java
+^^^ Not sure why but client/PhoneHome won't run, look into it ^^^
