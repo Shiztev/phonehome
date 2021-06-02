@@ -1,4 +1,4 @@
-package phonehome.home;
+package dev.home;
 
 import java.io.IOException;
 import java.net.ServerSocket;

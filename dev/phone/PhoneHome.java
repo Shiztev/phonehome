@@ -1,4 +1,4 @@
-package phonehome.phone;
+package dev.phone;
 
 import java.net.Socket;
 
@@ -21,7 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import phonehome.Comm;
+import dev.Comm;
 
 /**
  * (G)UI of client side of PhoneHome. Displays messages, gets messages to send,

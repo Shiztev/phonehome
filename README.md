@@ -1,10 +1,10 @@
 # phonehome
 A private chat service (privatization is a work in progress....).
 
-- phonehome package is the current development package
+- dev package contains current development files
 
-- client package contains the current stable files for the client side of phonehome
+- phonehome package contains the current stable server and client packages
+	+ server package contains stable server-side files
+	+ client package contains stable client-side files
 
 - lib package contains javafx jars for onhand compilation
-
-- server package contains the current stable files for the server side of phonehome

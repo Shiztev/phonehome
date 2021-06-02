@@ -1,4 +1,4 @@
-package phonehome.phone;
+package dev.phone;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

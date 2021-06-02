@@ -1,9 +1,9 @@
-package phonehome.home;
+package dev.home;
 
 import java.io.IOException;
 import java.net.Socket;
 
-import phonehome.Comm;
+import dev.Comm;
 
 /**
  * PhoneHome Home proxy handler. Handles communication between a {@link PhoneClient}
