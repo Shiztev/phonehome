@@ -1,4 +1,4 @@
-package client;
+package runnable;
 
 import java.net.Socket;
 
