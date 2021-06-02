@@ -1,4 +1,4 @@
-package phonehome;
+package phonehome.server;
 
 import java.io.IOException;
 import java.io.PrintWriter;

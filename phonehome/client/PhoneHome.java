@@ -20,7 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import phonehome.Comm;
+
 
 /**
  * (G)UI of client side of PhoneHome. Displays messages, gets messages to send,
