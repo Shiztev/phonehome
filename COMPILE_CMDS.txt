@@ -1,0 +1,3 @@
+For a PhoneHome.java file:
+    javac --module-path /home/File\ Camp/usefull/javafx-sdk-11.0.2/lib --add-modules javafx.controls /phonehome/packagename/and/path/to/PhoneHome.java
+    java --module-path /home/File\ Camp/usefull/javafx-sdk-11.0.2/lib --add-modules javafx.controls phonehome.packagename.and.path.to.PhoneHome
