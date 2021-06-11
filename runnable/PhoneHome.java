@@ -210,7 +210,7 @@ public class PhoneHome extends Application {
         Scene scene = new Scene(phoneline);
 
         // set scene css
-        scene.getStylesheets().add("phonehome/phone/assets/phonestyle.css");
+        scene.getStylesheets().add("assets/phonestyle.css");
 
         stage.setScene(scene);
         stage.show();
