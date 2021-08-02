@@ -74,7 +74,7 @@ public class PhoneHome extends Application {
          */
 
         // model
-        Comm phone = new Comm(new Socket("localhost", 6403));
+        Comm phone = new Comm(new Socket("10.0.0.142", 6403));
 
 
         /**
@@ -210,7 +210,7 @@ public class PhoneHome extends Application {
         Scene scene = new Scene(phoneline);
 
         // set scene css
-        scene.getStylesheets().add("assets/phonestyle.css");
+        scene.getStylesheets().add("runnable/assets/phonestyle.css");
 
         stage.setScene(scene);
         stage.show();
