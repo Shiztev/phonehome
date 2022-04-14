@@ -1,5 +1,5 @@
 # phonehome
-A private chat service (privatization is a work in progress....).
+A chat service.
 
 - dev package contains current development files
 
